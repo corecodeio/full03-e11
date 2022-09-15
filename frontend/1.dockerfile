@@ -1,8 +1,8 @@
 ## Build
-# docker build -t full-front:0.1.0-nginx-alpine .
+# docker build -t full-front:0.1.1 .
 
 ## Run
-# docker run -p 3000:80 -d full-front:0.1.0-nginx-alpine
+# docker run -p 3000:3000 -d full-front:0.1.1
 
 ## Entrar al contenedor
 # docker run -it full-front:0.1.0 /bin/bash
@@ -19,8 +19,12 @@ RUN npm install
 
 RUN npm run build
 
-FROM nginx:1.22.0-alpine
+FROM node:18.9.0
 
-COPY --from=compilacion /opt/app/build /usr/share/nginx/html
+COPY --from=compilacion /opt/app/build /opt/app/build
 
-CMD ["nginx", "-g", "daemon off;"]
+WORKDIR /opt/app
+
+RUN npm install -g serve
+
+CMD ["serve", "-s", "build"]

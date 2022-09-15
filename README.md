@@ -17,9 +17,6 @@ docker run -p 1521:1521 -d `
 gvenzl/oracle-xe
 ```
 
-@TODOS:
-- Bug at the moment of create a function in init script
-
 ### 2. Backend Container
 
 ``` powershell
@@ -34,9 +31,8 @@ full-back:0.1.0
 ### 3. Frontend Container
 
 ```
-docker run -p 3000:3000 -d full-front:0.1.0
+docker run -p 3000:80 -d full-front:0.1.0-nginx-alpine
 ```
 
 @TODO
-- Set the env var REACT_APP_BACKEND_BASE_URL
-- Connect to backend
+- Bug when create a category
