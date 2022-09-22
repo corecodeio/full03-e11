@@ -12,7 +12,7 @@ docker run -p 1521:1521 -d `
 -e ORACLE_PASSWORD=mipassword `
 -e APP_USER=appuser `
 -e APP_USER_PASSWORD=mipasswordapp `
--v oracle-volume:/opt/oracle/oradata `
+-v oracle-volume:/opt/oracle/oradata ` # Persistencia
 -v "C:\Users\jesgu\code\full-contaier-k8s\db:/container-entrypoint-initdb.d" `
 gvenzl/oracle-xe
 ```
