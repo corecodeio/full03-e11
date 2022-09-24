@@ -1,7 +1,15 @@
 # Example Javascript Application
 This a basic javascrip application. The frontend was built with reactjs, the backend with nodejs and express and the database layer with a Oracle Database XE.
 
-## How to use it
+## Using Kubernetes
+
+The following command creates all the necessary resources to start the application.
+
+``` powershell
+kubectl apply -k .\k8s\
+```
+
+## Using Docker
 
 ### 1. Oracle Database Container
 
@@ -12,8 +20,8 @@ docker run -p 1521:1521 -d `
 -e ORACLE_PASSWORD=mipassword `
 -e APP_USER=appuser `
 -e APP_USER_PASSWORD=mipasswordapp `
--v oracle-volume:/opt/oracle/oradata ` # Persistencia
--v "C:\Users\jesgu\code\full-contaier-k8s\db:/container-entrypoint-initdb.d" `
+-v oracle-volume:/opt/oracle/oradata `
+-v "C:\Users\jesgu\code\full-contaier-k8s\k8s:/container-entrypoint-initdb.d" `
 gvenzl/oracle-xe
 ```
 
@@ -30,7 +38,7 @@ full-back:0.1.0
 
 ### 3. Frontend Container
 
-```
+``` powershell
 docker run -p 3000:80 -d full-front:0.1.0-nginx-alpine
 ```
 
